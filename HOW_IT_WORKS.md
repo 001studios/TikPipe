@@ -1,13 +1,13 @@
 # Internal Architecture and Technical Overview
 
-This document provides a detailed breakdown of the internal architecture, data pipeline, and design decisions implemented in `user.py` to facilitate easy maintenance, debugging, and extension.
+This document provides a detailed breakdown of the internal architecture, data pipeline, and design decisions implemented in `main.py` to facilitate easy maintenance, debugging, and extension.
 
 ---
 
 ## 1. Pipeline Flowchart
 
 ```text
-[ user.py ]
+[ main.py ]
     │
     ├── 1. Configuration Loading (config.json)
     │
@@ -105,7 +105,7 @@ Whenever scrolling triggers a request to endpoints like `/api/recommend/item_lis
 ### D. Concurrent Producer-Consumer Pipeline
 Traditional scraping tools operate sequentially: gather all links first, then download all links.
 
-`user.py` implements a **Producer-Consumer** pattern:
+`main.py` implements a **Producer-Consumer** pattern:
 1. **Producer:** The automated Playwright browser scrolling and intercepting network packets.
 2. **Consumer:** A background `ThreadPoolExecutor` managing concurrent download workers.
 
@@ -151,7 +151,7 @@ To ensure universal format compatibility without relying on CPU-intensive local 
 ## 3. Developer Modification Guide
 
 ### Adjusting the Scroll Frequency
-In `user.py`, locate the scrolling loop inside `run_live_extractor`:
+In `main.py`, locate the scrolling loop inside `run_live_extractor`:
 ```python
 page.keyboard.press("ArrowDown")
 page.mouse.wheel(0, 500)
