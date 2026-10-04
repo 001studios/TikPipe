@@ -22,10 +22,10 @@ Your project directory (e.g., `D:\tiktok extractor\`) should be organized as fol
 ```text
 tiktok extractor/
 │
-├── user.py                     # Main capture and download script
+├── main.py                     # Main capture and download script
 ├── requirements.txt            # Python dependencies list
-├── update_dependencies.bat     # 1-click dependency installer/updater
-├── setup_login.py              # One-time login helper script
+├── update.bat     # 1-click dependency installer/updater
+├── login.py              # One-time login helper script
 ├── config.json                 # Configuration file (auto-generated on first run)
 ├── videos.txt                  # Temporary file storing extracted URLs
 └── perfil_navegador/           # Persistent folder storing your Chrome session
@@ -36,7 +36,7 @@ tiktok extractor/
 ## Step 1: Install Dependencies
 
 1. Open the project folder.
-2. **Double-click** the file **`update_dependencies.bat`**.
+2. **Double-click** the file **`update.bat`**.
 3. A command prompt window will open and automatically execute:
    * Upgrading the `pip` package manager.
    * Installing `yt-dlp`, `playwright`, and `curl_cffi`.
@@ -49,7 +49,7 @@ tiktok extractor/
 
 To allow the program to access your personalized "For You" feed, it must use your active account. To prevent Google from blocking your login with the *"This browser or app may not be secure"* error, a native launch setup is used:
 
-1. Create a file named **`setup_login.py`** in the project folder with the following content:
+1. Create a file named **`login.py`** in the project folder with the following content:
 
 ```python
 import os
@@ -89,7 +89,7 @@ print("Session successfully saved to ./perfil_navegador!")
 2. Close all existing Google Chrome windows running on your PC.
 3. Open a terminal in the project directory and run:
    ```cmd
-   python setup_login.py
+   python login.py
    ```
 4. A fresh Chrome window will launch:
    * In the first tab, sign in to your Google account.
@@ -101,7 +101,7 @@ print("Session successfully saved to ./perfil_navegador!")
 
 ## Step 3: Configuration (`config.json`)
 
-The first time you run `user.py`, it will automatically create `config.json`. You can open it in **Notepad** to customize your settings:
+The first time you run `main.py`, it will automatically create `config.json`. You can open it in **Notepad** to customize your settings:
 
 ```json
 {
@@ -124,7 +124,7 @@ Whenever you want to download videos:
 1. Open your terminal in the project folder.
 2. Run:
    ```cmd
-   python user.py
+   python main.py
    ```
 3. The program will:
    * Launch Chrome in the background with your saved session.
@@ -144,7 +144,7 @@ Make sure you do not have another Google Chrome window open using the same profi
 No. `yt-dlp` extracts the clean, original-quality media streams directly from ByteDance/TikTok content delivery networks.
 
 #### 3. How do I download from a specific creator profile instead of my "For You" feed?
-In `user.py`, find the following line:
+In `main.py`, find the following line:
 ```python
 page.goto("https://www.tiktok.com/foryou")
 ```
