@@ -12,6 +12,7 @@ Before getting started, make sure your computer meets the following requirements
 2. **Python 3.10 or higher** (compatible with Python 3.11, 3.12, and 3.13).
    * When installing Python, make sure to check the box that says **"Add python.exe to PATH"** on the first setup screen.
 3. **Google Chrome** installed officially on your system.
+4. You can also install tikpipe via pip and use it from the console with "pip install tikpipe".
 
 ---
 
